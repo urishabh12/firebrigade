@@ -6,9 +6,8 @@ exports.viewer = (req, res, next) => {
     .exec((err, result) => {
       if (err) {
         return next(err);
-      } else {
-        res.send(result);
       }
+      res.send(result);
     });
 };
 
