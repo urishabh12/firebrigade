@@ -1,6 +1,6 @@
 const User = require("../model/user.model");
 
-exports.registration = (req, res) => {
+exports.registration = (req, res, next) => {
   let newUser = new User({
     name: req.body.name,
     mnumber: req.body.number,
@@ -16,7 +16,7 @@ exports.registration = (req, res) => {
   });
 };
 
-exports.login = (req, res) => {
+exports.login = (req, res, next) => {
   const result = User.find({ mnumber: req.body.number }).exec((err, result) => {
     if (err) {
       return res.json({ message: "unscuccessful" });

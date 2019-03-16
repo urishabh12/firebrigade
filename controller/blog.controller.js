@@ -1,6 +1,6 @@
 const Blog = require("../model/blog.model");
 
-exports.viewer = (req, res) => {
+exports.viewer = (req, res, next) => {
   const result = Blog.find()
     .select({ question: 1, answer: 1 })
     .exec((err, result) => {
@@ -12,7 +12,7 @@ exports.viewer = (req, res) => {
     });
 };
 
-exports.sender = (req, res) => {
+exports.sender = (req, res, next) => {
   let newBlog = new Blog({
     question: req.body.question,
     answer: req.body.answer
