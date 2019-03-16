@@ -27,7 +27,7 @@ exports.sender = (req, res, next) => {
 };
 
 exports.deleter = (req, res, next) => {
-  Blog.deleteOne({ _id: res.body.id }, err => {
+  Blog.deleteOne({ _id: req.body.id }, err => {
     if (err) {
       return next(err);
     }
