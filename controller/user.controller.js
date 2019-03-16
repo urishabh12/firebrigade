@@ -23,7 +23,7 @@ exports.login = (req, res) => {
     } else if (result.length == 0) {
       return res.json({ message: "unsuccessful" });
     } else if (result[0].password == req.body.password) {
-      res.json({ message: "success" }, result);
+      res.json({ message: "success", result: result });
     } else {
       res.json({ message: "unsuccessful" });
     }
