@@ -47,6 +47,15 @@ exports.alert = async (req, res, next) => {
   }
 };
 
+exports.getall = (req, res, next) => {
+  const result = Event.find({ isDelete: false }).exec((err, result) => {
+    if (err) {
+      return next(err);
+    }
+    res.json({ result: result });
+  });
+};
+
 exports.respond = async (res, req, next) => {
   const result = await Event.find({ lat: req.body.lat, long: req.body.lat });
   result[0].isDelete = True;

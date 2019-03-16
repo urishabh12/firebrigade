@@ -34,7 +34,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "react": "^16.8.4"
+    "react": "^16.8.4",
+    "rivescript": "^2.0.0"
   },
   "devDependencies": {
     "@babel/node": "^7.2.2"
