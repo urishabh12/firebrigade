@@ -25,3 +25,12 @@ exports.sender = (req, res, next) => {
     res.json({ message: "success" });
   });
 };
+
+exports.deleter = (req, res, next) => {
+  Event.deleteOne({ _id: res.body.id }, err => {
+    if (err) {
+      return next(err);
+    }
+    res.json({ message: "success" });
+  });
+};
