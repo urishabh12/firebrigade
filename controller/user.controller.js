@@ -17,17 +17,15 @@ exports.registration = (req, res) => {
 };
 
 exports.login = (req, res) => {
-  const result = User.find({ mnumber: req.body.number })
-    .select({ password: 1 })
-    .exec((err, result) => {
-      if (err) {
-        return res.json({ message: "unscuccessful" });
-      } else if (result.length == 0) {
-        return res.json({ message: "unsuccessful" });
-      } else if (result[0].password == req.body.password) {
-        res.json({ message: "success" });
-      } else {
-        res.json({ message: "unsuccessful" });
-      }
-    });
+  const result = User.find({ mnumber: req.body.number }).exec((err, result) => {
+    if (err) {
+      return res.json({ message: "unscuccessful" });
+    } else if (result.length == 0) {
+      return res.json({ message: "unsuccessful" });
+    } else if (result[0].password == req.body.password) {
+      res.json({ message: "success" }, result);
+    } else {
+      res.json({ message: "unsuccessful" });
+    }
+  });
 };
