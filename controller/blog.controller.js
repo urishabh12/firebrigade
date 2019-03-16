@@ -4,9 +4,7 @@ exports.viewer = (req, res, next) => {
   const result = Blog.find()
     .select({ question: 1, answer: 1 })
     .exec((err, result) => {
-      if (err) {
-        return next(err);
-      }
+      if (err) return next(err);
       res.send(result);
     });
 };
