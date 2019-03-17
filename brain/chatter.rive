@@ -3,9 +3,26 @@
 + who are you
 - I am Fire Department
 
-+ (*fire at*|*is fire*|*is a fire*)
++ (*fire at*|*is fire*|*is a fire*|*fire*)
 - If there is a fire at your location please alert the fire department by providing your address and submitting alert
+
++ *shut fire*
+- Stay away from fire call for help
+
++ my name is *
+- hello <star> how are you.
+
++ (hello|hi)
+- hi
+- hello
+
++ *help*
+- What help do you need
+
++ python *
+- you need python to run python script
 
 + *
 - I'm not sure how to reply to that.
 - Try asking your question a different way.
+

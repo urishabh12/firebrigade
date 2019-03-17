@@ -4,8 +4,8 @@ require("mongoose-double")(mongoose);
 var SchemaTypes = mongoose.Schema.Types;
 
 const EventSchema = mongoose.Schema({
-  long: SchemaTypes.Double,
-  lat: SchemaTypes.Double,
+  long: String,
+  lat: String,
   count: Number,
   isDelete: Boolean
 });
