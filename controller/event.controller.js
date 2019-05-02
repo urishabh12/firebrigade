@@ -12,41 +12,45 @@ function arePointsNear(checkPoint, centerPoint, km) {
 }
 
 exports.alert = async (req, res, next) => {
-  const result = await Event.find({ isDelete: false }).select({
-    lat: 1,
-    long: 1,
-    count: 1
-  });
-  for (var i = 0; i < result.length; i++) {
-    let a = parseFloat(result[i].lat);
-    let b = parseFloat(result[i].long);
-    let x = parseFloat(req.body.long);
-    let y = parseFloat(req.body.lat);
-    var n = arePointsNear({ lat: a, long: b }, { long: x, lat: y }, 1);
-    if (n) {
-      result[i].count = result[i].count + 1;
-      result[i].save(err => {
+  try {
+    const result = await Event.find({ isDelete: false }).select({
+      lat: 1,
+      long: 1,
+      count: 1
+    });
+    for (var i = 0; i < result.length; i++) {
+      let a = parseFloat(result[i].lat);
+      let b = parseFloat(result[i].long);
+      let x = parseFloat(req.body.long);
+      let y = parseFloat(req.body.lat);
+      var n = arePointsNear({ lat: a, long: b }, { long: x, lat: y }, 1);
+      if (n) {
+        result[i].count = result[i].count + 1;
+        result[i].save(err => {
+          if (err) {
+            return next(err);
+          }
+          return res.json({ message: "success" });
+        });
+      }
+    }
+    if (n == false) {
+      let newEvent = new Event({
+        long: req.body.long,
+        lat: req.body.lat,
+        count: 1,
+        isDelete: false
+      });
+      console.log("IN");
+      newEvent.save(err => {
         if (err) {
           return next(err);
         }
         return res.json({ message: "success" });
       });
     }
-  }
-  if (n == false) {
-    let newEvent = new Event({
-      long: req.body.long,
-      lat: req.body.lat,
-      count: 1,
-      isDelete: false
-    });
-    console.log("IN");
-    newEvent.save(err => {
-      if (err) {
-        return next(err);
-      }
-      return res.json({ message: "success" });
-    });
+  } catch (err) {
+    console.log(error);
   }
 };
 
